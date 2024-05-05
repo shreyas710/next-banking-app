@@ -9,7 +9,6 @@ export async function createSessionClient() {
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!);
 
   const session = cookies().get("appwrite-session");
-
   if (!session || !session.value) {
     throw new Error("No session");
   }
@@ -41,4 +40,3 @@ export async function createAdminClient() {
     }
   };
 }
-

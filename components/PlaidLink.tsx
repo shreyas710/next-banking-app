@@ -10,6 +10,8 @@ import {
   createLinkToken,
   exchangePublicToken,
 } from "@/lib/actions/user.actions";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
@@ -51,12 +53,44 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           disabled={!ready}
           className="plaidlink-primary"
         >
-          Connect Bank
+          <p className={cn("sidebar-label")}>Connect Bank</p>
         </Button>
       ) : variant === "ghost" ? (
-        <Button>Connect Bank</Button>
+        <Button
+          onClick={() => open()}
+          className="plaidlink-ghost"
+          variant="ghost"
+        >
+          <Image
+            src={"/icons/connect-bank.svg"}
+            alt="connect bank"
+            fill
+          />
+          <p
+            className={cn(
+              "sidebar-label",
+              "text-[16px] font-semibold text-black-2"
+            )}
+          >
+            Connect Bank
+          </p>
+        </Button>
       ) : (
-        <Button>Connect Bank</Button>
+        <Button onClick={() => open()} className="plaidlink-default">
+          <Image
+            src={"/icons/connect-bank.svg"}
+            alt="connect bank"
+            width={24}
+            height={24}
+          />
+          <p
+            className={cn(
+              "text-[16px] font-semibold text-black-2 xl:block md:hidden block"
+            )}
+          >
+            Connect Bank
+          </p>
+        </Button>
       )}
     </>
   );
